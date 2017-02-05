@@ -1,0 +1,11 @@
+person:nth-child(odd) {
+    background: lightblue;
+}
+
+person:nth-child(even) {
+    background: lightyellow;
+}
+
+.dottedBorder {
+    border: 4px dotted pink;   /*my daughter wanted pink*/
+}

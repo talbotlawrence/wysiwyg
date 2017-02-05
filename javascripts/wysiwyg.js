@@ -1,6 +1,6 @@
 "use strict";
+//this is a total mess as of 2/4/2017 at 9:58pm.
 
-// Create an array of objects that represents famous people
 var famousPeople = [
 	{
 	  title: "President",
@@ -36,23 +36,102 @@ var famousPeople = [
 	}	
 ];
 
-//Create a text input in your DOM
-var textInput = document.createElement("input");
-input.id = "input";
-document.body.appendChild(textInput);
+//var textInput = document.getElementById("input");
+var peopleContainer = document.getElementById("container");
+var eachPresidentContainer = getElementsByClassName("president");
 
-//Beneath that, create a container, block element in your DOM
-var divContainer = document.createElement("div");
-divContainer.id = "container";
-document.body.appendChild(divContainer);
+//Wouldn't be great to get all of these functions working!!!
+function createPresidentContainer(president) {
+	var peopleContainer = document.getElementById("container");
+	var eachPresidentContainer = getElementsByClassName("president");
+	eachPresidentContainer.innerHTML += `
+	<person>
+	  <header>${president.name}, ${president.title}</header>
+	  <section>${president.bio}</section>
+	  <section>${president.image}</section>
+	  <footer>${president.name} was born in ${president.lifespan.birth} 
+	  			and died in ${president.lifespan.death}
+	  </footer>
+	</person>
+	`
+	peopleContainer.appendChild(eachPresidentContainer.innerHTML);
+};
 
-//Create a DOM element for each of the objects inside the container. 
-//Style your person elements however you like.
-var ourPresidents = document.createElement("article");
-ourPresidents.className = "presidents";
-document.body.appendChild(ourPresidents);
+function loopToAddPresident() {
+	for (var i = 0; i < famousPeople.length; i++) {
+		createPresidentContainer(famousPeople[i]);
+	}
+};
 
-//For every even numbered element, have a light yellow background
+function addEventListener() {
+		for (var i = 0; i < famousPeople.length; i++) {
+	  famousPeople.item(i).addEventListener("click", createDottedBorder);
+	};
+};
+
+function createDottedBorder() {
+	//toggle--work on this!!!
+	var eachPresidentContainer = getElementsByClassName("president");
+	.addEventListener("click", function(event){
+  eachPresidentContainer.classList.toggle("dottedBorder");
+  });
+  textElementGainFocus();
+};
+
+function textElementGainFocus() {
+	var textInput = document.getElementById("input");
+	textInput.focus();			//Is everyone else googling as much as I am?
+};
+
+// var fieldEl = document.getElementById("keypress-input");
+// fieldEl.addEventListener("keyup", function(event){
+//   console.log("event", event);
+//   outputEl.innerHTML = event.target.value;
+// });   
+
+function biographyBound(president) {		//this needs work!!
+	var textInput = document.getElementById("input");
+		president.addEventListener("keyup", function(event){
+	  console.log("event", event);
+	  textInput.innerHTML = event.target.value;
+	});   
+};
+
+function deleteContentInputField(event) {
+	//13
+	if (event.keyCode === 13) {
+		textInput.value = "";
+	}
+};
 
 
-//For every odd numbered element, have a light blue background
+
+
+
+
+
+
+// function colorMeBad(firstColor, secondColor) {
+// 	console.log("Our famous people are: ", famousPeople);
+// 	for (var i = 0; i < famousPeople.length; i++) {   
+// 		if (i%2===0) {
+// 			famousPeople[i].style.backgroundColor = firstColor; //"lightyellow";
+// 		} else {
+// 			famousPeople[i].style.backgroundColor = secondColor; //"lightblue" ;
+// 		}
+// 	}
+// };
+
+//Style your person/container elements however you like.
+
+// When you click on one of the person elements, a dotted border should appear around it.
+
+// When you click on one of the person elements, the text input should immediately 
+//gain focus so that you can start typing.
+
+// When there is a highlighted person element, and you begin typing in the input box, 
+//the person's biography should be immediately bound to what you are typing, letter by letter.
+//?????
+
+// When you press the enter/return key when typing in the input field, 
+//then the content of the input field should immediately be blank.
